@@ -1,0 +1,23 @@
+get-module -ListAvailable
+get-module -ListAvailable | Where-object {$_.Name -like '*Sql*'}
+
+Télécharger le dossier du module (le dézipper si besoin).
+https://www.powershellgallery.com/packages/SqlServer/22.1.1
+Cliquer sur "Manual download", télécharger le nupkg et le renommer en .zip
+Le placer ici : C:\Windows\System32\WindowsPowerShell\v1.0\Modules (c'est pas obligatoire, on peut le mettre ailleurs)
+Lancer Powershell en mode admin
+Exécuter :   Install-Module -Name Sqlserver
+
+Il est possible qu'il demande une version plus récente de Nuget mais ça fonctionne quand même sans le faire.
+
+A cause de la sécurité, si on lance l'export, il va nous emmerder. Il faut dire que les fichiers dans le dossier Sqlserver sont fiables.
+Via PowerShell, il faut aller dans le dossier Sqlserver
+Faire cd.. 2 fois puis :
+cd "Windows\System32\WindowsPowerShell\v1.0\Modules\Sqlserver"
+Ensuite, exécuter get-childitem * -recurse *.ps1 | unblock-file
+
+Ensuite, exécuter cette commande :
+Add-RoleMember -member EURO\244182 -rolename "Role" -database "Distribution Report" -server "s02v09902877"
+Add-RoleMember -member EURO\244182 -rolename "Role" -database "Distribution Report detailed" -server "s02v09902877"
+Add-RoleMember -member EURO\244182 -rolename "Role" -database "Production Report" -server "s02v09902877"
+Add-RoleMember -member EURO\244182 -rolename "Role" -database "Production Report detailed" -server "s02v09902877"

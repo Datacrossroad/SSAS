@@ -1,0 +1,21 @@
+https://learn.microsoft.com/en-us/answers/questions/563009/how-to-change-tabular-mode-to-multidimensional-mod
+
+You don't need to uninstall SSAS, please refer to below steps:
+
+1.Access to C:\Program Files\Microsoft SQL Server\MSAS14.SQLSERVER2017\OLAP\Config and then find msmdsrv
+134467-path.png
+
+2.Copy the file to a temp folder, open with notepad. In the below screenshot, the Deployment mode is set to 2 ( tabular mode ), you should change it to 0 ( multidimensional model ).
+134438-2.png
+
+3.Copy and replace the msmdsrv.ini file back to the OLAP\Config directory.
+
+4.Go to services.msc and restart the Analysis Services instance.
+134512-3.png
+
+5.Connect to the server in SQL Server Management Studio, and then you could find that the model has been changed.
+
+For more information, please refer to this blog.
+
+Best regards,
+Carrin
